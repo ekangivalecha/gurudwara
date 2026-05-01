@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Will You Come?</title>
+    <style>
+        body {
+            background: #0f172a;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-top: 100px;
+            font-size: 30px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #yes {
+            background: #22c55e;
+            color: white;
+        }
+
+        #no {
+            background: #ef4444;
+            color: white;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Will you come with me to Gurudwara? 🙏</h1>
+
+<p>Monday, 12:30 PM<br>I’ll be waiting at the metro station.</p>
+
+<button id="yes" class="btn">Yes ❤️</button>
+<button id="no" class="btn">No 😒</button>
+
+<script>
+    let noClickCount = 0;
+
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+
+    noBtn.addEventListener("click", function() {
+        noClickCount++;
+
+        if (noClickCount < 5) {
+            let x = Math.random() * window.innerWidth;
+            let y = Math.random() * window.innerHeight;
+
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+        } else {
+            alert("Okay… I won’t force you. But I’ll still be there 🙂");
+        }
+    });
+
+    yesBtn.addEventListener("click", function() {
+        alert("You said YES ❤️\nI’ll wait for you at 12:30.");
+        
+        // OPTIONAL: send response (basic)
+        fetch("https://formspree.io/f/your-id", {
+            method: "POST",
+            body: JSON.stringify({ response: "YES" }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
