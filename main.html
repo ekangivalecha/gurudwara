@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Will You Come?</title>
+    <title>For Ankit</title>
     <style>
         body {
             background: #0f172a;
@@ -21,11 +21,11 @@
         }
 
         .btn {
-            padding: 10px 20px;
+            padding: 12px 22px;
             margin: 20px;
             font-size: 18px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
         }
 
@@ -44,45 +44,68 @@
 
 <body>
 
-<h1>Will you come with me to Gurudwara? 🙏</h1>
+<h1>Ankit… can we meet once? 🙏</h1>
 
-<p>Monday, 12:30 PM<br>I’ll be waiting at the metro station.</p>
+<p>
+I know things got messy… and I’m really sorry for my part in it.
+</p>
 
-<button id="yes" class="btn">Yes ❤️</button>
-<button id="no" class="btn">No 😒</button>
+<p>
+I’m not here to argue or force anything.
+Just one calm moment.
+</p>
+
+<p>
+Monday, 12:30 PM<br>
+I’ll be at the metro station.
+</p>
+
+<p>
+We can go to Gurudwara together… or just sit quietly.
+</p>
+
+<button id="yes" class="btn">I’ll come</button>
+<button id="no" class="btn">I can’t</button>
 
 <script>
-    let noClickCount = 0;
+let noClickCount = 0;
 
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
 
-    noBtn.addEventListener("click", function() {
-        noClickCount++;
+noBtn.addEventListener("click", function() {
+    noClickCount++;
 
-        if (noClickCount < 5) {
-            let x = Math.random() * window.innerWidth;
-            let y = Math.random() * window.innerHeight;
+    if (noClickCount < 3) {
+        let x = Math.random() * window.innerWidth;
+        let y = Math.random() * window.innerHeight;
 
-            noBtn.style.left = x + "px";
-            noBtn.style.top = y + "px";
-        } else {
-            alert("Okay… I won’t force you. But I’ll still be there 🙂");
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    } else {
+        document.body.innerHTML = `
+        <h1>I understand.</h1>
+        <p>I won’t force anything.</p>
+        <p>I’ll still be there at 12:30… just in case.</p>
+        `;
+    }
+});
+
+yesBtn.addEventListener("click", function() {
+    document.body.innerHTML = `
+    <h1>Thank you 🤍</h1>
+    <p>I’ll be waiting at 12:30.</p>
+    `;
+
+    // optional tracking
+    fetch("https://formspree.io/f/your-id", {
+        method: "POST",
+        body: JSON.stringify({ response: "YES" }),
+        headers: {
+            "Content-Type": "application/json"
         }
     });
-
-    yesBtn.addEventListener("click", function() {
-        alert("You said YES ❤️\nI’ll wait for you at 12:30.");
-        
-        // OPTIONAL: send response (basic)
-        fetch("https://formspree.io/f/your-id", {
-            method: "POST",
-            body: JSON.stringify({ response: "YES" }),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-    });
+});
 </script>
 
 </body>
