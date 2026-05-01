@@ -51,7 +51,7 @@ I know things got messy… and I’m really sorry for my part in it.
 </p>
 
 <p>
-I’m not here to argue or force anything.
+I’m not here to argue or force anything.<br>
 Just one calm moment.
 </p>
 
@@ -73,6 +73,7 @@ let noClickCount = 0;
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
 
+// playful "no" button
 noBtn.addEventListener("click", function() {
     noClickCount++;
 
@@ -91,20 +92,9 @@ noBtn.addEventListener("click", function() {
     }
 });
 
+// YES → WhatsApp message
 yesBtn.addEventListener("click", function() {
-    document.body.innerHTML = `
-    <h1>Thank you 🤍</h1>
-    <p>I’ll be waiting at 12:30.</p>
-    `;
-
-    // optional tracking
-    fetch("https://formspree.io/f/your-id", {
-        method: "POST",
-        body: JSON.stringify({ response: "YES" }),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    });
+    window.location.href = "https://wa.me/918368337455?text=I%20will%20come%20on%20Monday%20at%2012:30";
 });
 </script>
 
