@@ -9,27 +9,11 @@
             color: white;
             font-family: Arial;
             text-align: center;
-            overflow: hidden;
         }
 
         .container {
             margin-top: 100px;
         }
-
-        h1 {
-            font-size: 32px;
-        }
-
-        p {
-            font-size: 18px;
-            opacity: 0;
-            animation: fadeIn 2s forwards;
-        }
-
-        p:nth-child(2) { animation-delay: 2s; }
-        p:nth-child(3) { animation-delay: 3s; }
-        p:nth-child(4) { animation-delay: 4s; }
-        p:nth-child(5) { animation-delay: 5s; }
 
         .btn {
             padding: 12px 22px;
@@ -38,36 +22,10 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            transform: scale(1.1);
         }
 
         #yes { background: #22c55e; }
         #no { background: #ef4444; position: absolute; }
-
-        #countdown {
-            margin-top: 20px;
-            font-size: 20px;
-            color: #facc15;
-        }
-
-        .heart {
-            position: absolute;
-            color: pink;
-            animation: float 5s linear infinite;
-        }
-
-        @keyframes float {
-            from { transform: translateY(100vh); opacity: 1; }
-            to { transform: translateY(-10vh); opacity: 0; }
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
     </style>
 </head>
 
@@ -82,65 +40,30 @@
     <p>Monday, 12:30 PM – I’ll be at the metro station.</p>
     <p>We can go to Gurudwara together… or just sit quietly.</p>
 
-    <div id="countdown"></div>
-
     <button id="yes" class="btn">I’ll come</button>
     <button id="no" class="btn">I can’t</button>
 </div>
 
-<audio id="music" loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
-</audio>
-
 <script>
-// typing effect
+// typing effect FIXED
 let text = "Ankit… can we meet once? 🙏";
 let i = 0;
+
 function typeEffect() {
     if (i < text.length) {
         document.getElementById("typing").innerHTML += text.charAt(i);
         i++;
-        setTimeout(typeEffect, 70);
+        setTimeout(typeEffect, 50);
     }
 }
 typeEffect();
-
-// countdown (set your date)
-let targetDate = new Date("May 6, 2026 12:30:00").getTime();
-
-setInterval(function() {
-    let now = new Date().getTime();
-    let diff = targetDate - now;
-
-    let hours = Math.floor(diff / (1000 * 60 * 60));
-    let mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-    document.getElementById("countdown").innerHTML =
-        "Time left: " + hours + "h " + mins + "m";
-}, 1000);
-
-// floating hearts
-setInterval(() => {
-    let heart = document.createElement("div");
-    heart.innerHTML = "💖";
-    heart.className = "heart";
-    heart.style.left = Math.random() * 100 + "vw";
-    document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 5000);
-}, 500);
 
 // buttons
 let noClickCount = 0;
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
 
-// music starts on interaction
-document.body.addEventListener("click", () => {
-    document.getElementById("music").play();
-}, { once: true });
-
-// NO button
+// NO button move
 noBtn.addEventListener("click", function() {
     noClickCount++;
 
@@ -152,18 +75,16 @@ noBtn.addEventListener("click", function() {
         noBtn.style.top = y + "px";
     } else {
         document.body.innerHTML = `
-        <div class="container">
         <h1>I understand.</h1>
         <p>I won’t force anything.</p>
         <p>I’ll still be there at 12:30… just in case.</p>
-        </div>
         `;
     }
 });
 
-// YES → WhatsApp
+// YES → WhatsApp (PUT YOUR NUMBER)
 yesBtn.addEventListener("click", function() {
-    window.location.href = "https://wa.me/918368337455?text=Okay%20I’ll%20come%20at%2012:30";
+    window.location.href = "https://wa.me/91XXXXXXXXXX?text=Okay%20I’ll%20come%20at%2012:30";
 });
 </script>
 
